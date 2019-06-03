@@ -47,7 +47,7 @@ class DBHandler (context: Context, name : String?, factory: SQLiteDatabase.Curso
         val contadores = ArrayList<Contador>()
 
         if (cursor.count == 0) {
-            Toast.makeText(mCtx, "Registors No encontrados", Toast.LENGTH_SHORT).show()
+            Toast.makeText(mCtx, "Registros No encontrados", Toast.LENGTH_SHORT).show()
         } else {
             while (cursor.moveToNext()) {
                 val contador = Contador()
@@ -62,7 +62,7 @@ class DBHandler (context: Context, name : String?, factory: SQLiteDatabase.Curso
 
             }
 
-            Toast.makeText(mCtx, "${cursor.count.toString()} Records Found", Toast.LENGTH_SHORT).show()
+            Toast.makeText(mCtx, "${cursor.count.toString()} Registros encontrados", Toast.LENGTH_SHORT).show()
         }
 
         cursor.close()
