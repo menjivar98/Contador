@@ -3,11 +3,17 @@ package com.example.contador.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.contador.R
 import com.example.contador.adapter.ContadorAdapter
 import com.example.contador.db.DBHandler
+import com.example.contador.helper.logout
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 
 class HomeActivity : AppCompatActivity() {
@@ -16,6 +22,7 @@ class HomeActivity : AppCompatActivity() {
         lateinit var dbHandler: DBHandler
     }
 
+    private lateinit var mAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +32,8 @@ class HomeActivity : AppCompatActivity() {
 
         viewContadores()
 
+        mAuth = FirebaseAuth.getInstance()
+
         fab.setOnClickListener {
             val i = Intent(this, AddActivity::class.java)
             startActivity(i)
@@ -32,7 +41,10 @@ class HomeActivity : AppCompatActivity() {
 
 
 
+
     }
+
+
 
     private fun viewContadores(){
         val contadoreslist = dbHandler.getContador(this)
@@ -47,5 +59,22 @@ class HomeActivity : AppCompatActivity() {
 
         viewContadores()
         super.onResume()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+        menuInflater.inflate(R.menu.action_bar,menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+        if (item?.itemId == R.id.salir){
+            FirebaseAuth.getInstance().signOut()
+            logout()
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 }
