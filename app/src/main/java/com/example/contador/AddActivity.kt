@@ -22,8 +22,7 @@ class AddActivity : AppCompatActivity() {
         bt_save.setOnClickListener {
             if(et_team_a.text.isEmpty() || et_team_b.text.isEmpty()){
                 showMessage("LLenar los nombres de los equipo")
-                et_team_a.requestFocus()
-                et_team_b.requestFocus()
+
             }else{
                 val contador = Contador()
                 contador.nombreEquipoA = et_team_a.text.toString()
@@ -39,8 +38,17 @@ class AddActivity : AppCompatActivity() {
                     contador.ganador = "Se un empate"
                 }
 
+                et_team_a.setText(" ")
+                et_team_b.setText(" ")
+
                 MainActivity.dbHandler.addContador(this,contador)
                 et_team_a.requestFocus()
+
+                tv_score_team_a.setText("0")
+                tv_score_team_b.setText("0")
+
+                contadorA= 0
+                contadorB = 0
 
             }
         }
