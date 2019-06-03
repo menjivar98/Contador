@@ -1,10 +1,9 @@
-package com.example.contador
+package com.example.contador.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.Settings
-import android.view.View
 import android.widget.Toast
+import com.example.contador.R
 import com.example.contador.models.Contador
 import kotlinx.android.synthetic.main.activity_add.*
 
@@ -41,7 +40,7 @@ class AddActivity : AppCompatActivity() {
                 et_team_a.setText(" ")
                 et_team_b.setText(" ")
 
-                MainActivity.dbHandler.addContador(this,contador)
+                HomeActivity.dbHandler.addContador(this,contador)
                 et_team_a.requestFocus()
 
                 tv_score_team_a.setText("0")

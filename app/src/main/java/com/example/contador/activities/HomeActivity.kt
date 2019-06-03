@@ -1,16 +1,16 @@
-package com.example.contador
+package com.example.contador.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.contador.R
 import com.example.contador.adapter.ContadorAdapter
 import com.example.contador.db.DBHandler
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
 
     companion object {
         lateinit var dbHandler: DBHandler
@@ -26,9 +26,11 @@ class MainActivity : AppCompatActivity() {
         viewContadores()
 
         fab.setOnClickListener {
-            val i = Intent(this,AddActivity::class.java)
+            val i = Intent(this, AddActivity::class.java)
             startActivity(i)
         }
+
+
 
     }
 
